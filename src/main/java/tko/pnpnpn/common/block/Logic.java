@@ -43,23 +43,7 @@ public class Logic
 		return list;
 	}
 	
-//	public static boolean getLogicByList(World world, Wire wire, Set mem, List<BlockPos> list){
-//		if (list.isEmpty()) {return false;}
-//		else {
-//			BlockPos first = list.remove(0);
-//			if(! mem.contains(first)) {
-//				Object tile = world.getTileEntity(first);
-//				if (tile instanceof ILogicProvider) {
-//					return ((ILogicProvider) tile).getLogic(wire)
-//								|| 	(getLogicByList(world, wire, mem, list));
-//				}
-//			}
-//		}
-//		return (getLogicByList(world, wire, mem, list));
-//	}
-	
-	public static boolean calculateLogic(ILogicable o, Wire wire, Set mem)
-	{
+	public static boolean calculateLogic(ILogicable o, Wire wire, Set mem){
 		if (o.canPassLogic(wire)) {
 			wire = o.getWireType(); // !!
 			mem.add(o.getPos());
@@ -89,23 +73,5 @@ public class Logic
 			}else return calculateSurroundLogic(wire, mem, list);
 		}
 	}
-	
-//	public static boolean calculateSurroundLogic(World world, Wire wire, Set<BlockPos> mem, List<BlockPos> list){
-//		if (list.isEmpty()) {return false;}
-//		else {
-//			BlockPos first = list.remove(0);
-//			if(! mem.contains(first)) {
-//				Object tile = world.getTileEntity(first);
-//				if(tile instanceof ILogicable) {
-//					if(((ILogicable) tile).canPassLogic(wire)) {
-//						mem.add(first);
-//						return ((ILogicable) tile).calculateLogic(wire, mem)
-//									|| (calculateSurroundLogic(world, wire, mem, list));
-//					}
-//				}
-//			}
-//		}
-//		return (calculateSurroundLogic(world, wire, mem, list));
-//	}
 	
 }
