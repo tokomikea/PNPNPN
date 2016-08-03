@@ -1,0 +1,20 @@
+{
+	"multipart":[
+		{
+			"when":{"inside":false,"outside":false},
+			"apply":{"model":"pnpnpn:rydd"}
+		},
+		{
+			"when":{"inside":false,"outside":true},
+			"apply":{"model":"pnpnpn:ryxd"}
+		},
+		{
+			"when":{"inside":true,"outside":false},
+			"apply":{"model":"pnpnpn:rydx"}
+		},
+		{
+			"when":{"inside":true,"outside":true},
+			"apply":{"model":"pnpnpn:ryxx"}
+		}
+	]
+}

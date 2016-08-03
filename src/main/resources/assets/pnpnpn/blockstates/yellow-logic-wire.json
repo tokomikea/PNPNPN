@@ -1,0 +1,21 @@
+{
+    "forge_marker":1,
+    "defaults":{
+        "model":"cube_all",
+        "textures":{
+            "all":"pnpnpn:blocks/yellow-logic-wire-dark"
+        }
+    },
+    "variants":{
+        "power":{
+            "true":{
+                "textures":{
+                    "all":"pnpnpn:blocks/yellow-logic-wire"
+                }
+            },
+            "false":{
+                
+            }
+        }
+    }
+}

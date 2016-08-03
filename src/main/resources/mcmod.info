@@ -1,0 +1,16 @@
+[
+{
+  "modid": "pnpnpn",
+  "name": "PNP NPN",
+  "description": "pnpnpnpnpn",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["TestDude"],
+  "credits": "pnp npn",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

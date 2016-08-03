@@ -1,0 +1,21 @@
+{
+    "forge_marker":1,
+    "defaults":{
+        "model":"cube_all",
+        "textures":{
+            "all":"pnpnpn:blocks/white-dark"
+        }
+    },
+    "variants":{
+        "power":{
+            "true":{
+                "textures":{
+                    "all":"pnpnpn:blocks/white"
+                }
+            },
+            "false":{
+                
+            }
+        }
+    }
+}
