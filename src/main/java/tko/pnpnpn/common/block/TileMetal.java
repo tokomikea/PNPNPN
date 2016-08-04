@@ -46,18 +46,6 @@ public class TileMetal extends TileLogicWire
 		return worldObj.getBlockState(pos).getValue(BlockLogic.POWER);
 	}
 
-//	@Override
-//	public boolean calculateLogic(Wire wire)
-//	{
-//		return this.calculateLogic(wire, (new HashSet()));
-//	}
-	
-//	@Override
-//	public boolean calculateLogic(Wire wire, Set mem)
-//	{
-//		return Logic.calculateLogic(this, Wire.M, (new HashSet()));
-//	}
-	
 	@Override
 	public void setValue(Wire wire, boolean v, Set mem)
 	{
@@ -71,32 +59,4 @@ public class TileMetal extends TileLogicWire
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	@Override
-//	public void readFromNBT(NBTTagCompound compound)
-//	{
-//		super.readFromNBT(compound);
-//		this.logic = compound.getBoolean("logic_value");
-//	}
-//
-//	@Override
-//	public NBTTagCompound writeToNBT(NBTTagCompound compound)
-//	{
-//		compound.setBoolean("logic_value", this.logic);
-//		return super.writeToNBT(compound);
-//	}
 }

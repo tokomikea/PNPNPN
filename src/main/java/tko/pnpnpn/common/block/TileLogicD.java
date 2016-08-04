@@ -75,33 +75,11 @@ public final class TileLogicD extends TileEntity
 		if(wire == this.outside.getWireType()) {
 			return this.outside.calculateLogic(wire);
 		} else if (wire == this.inside.getWireType()) {
-//			if (this.canInsidePassLogic(wire)) {
-				return this.inside.calculateLogic(wire);
-//			} else {
-//				return false;
-//			}
+			return this.inside.calculateLogic(wire);
 		}
 		return false;
 	}
 	
-//	@Override
-//	public boolean calculateLogic(Wire wire, Set<BlockPos> mem)
-//	{
-//		if(wire == Wire.M) {
-//			return this.outside.calculateLogic(wire, mem) || this.inside.calculateLogic(wire, mem);
-//		} else if(wire == this.outside.getWireType()) {
-//			return this.outside.calculateLogic(wire, mem);
-//		} else if (wire == this.inside.getWireType()) {
-////			if (this.canInsidePassLogic(wire)) {
-////				return this.inside.calculateLogic(wire);
-////			} else {
-////				return false;
-////			}
-//			return this.inside.calculateLogic(wire, mem);
-////			return worldObj.getBlockState(pos).getValue(INSIDE);
-//		}
-//		return false;
-//	}
 
 	@Override
 	public Wire getWireType()

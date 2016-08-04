@@ -72,24 +72,18 @@ public class BlockLogicWire extends BlockLogic
 	{
 		
 		boolean b1 = shouldSetState(world, pos, value);
-//		Wujia.LOG.info("update? " + b1);
 		if(b1){
 			IBlockState state = getBlockState(world, pos, POWER, value);
 			for(TileEntity tile : Logic.getLogicD(world, pos)){
 				world.notifyBlockOfStateChange(tile.getPos(), state.getBlock());
 			}
 			setBlockState(world, pos, state);
-//			for(TileEntity tile : Logic.getLogicD(world, pos)){
-//				world.notifyBlockOfStateChange(tile.getPos(), state.getBlock());
-//			}
-//			Wujia.LOG.info("update after : " + pos);
 		}
 	}
 	
 	private boolean shouldSetState(World world, BlockPos pos, boolean value)
 	{
 		IBlockState state = world.getBlockState(pos);
-//		Wujia.LOG.info("should update : " + pos + " " + state);
 		if(value != state.getValue(POWER)){return true;
 		}else return false;
 	}
@@ -107,9 +101,7 @@ public class BlockLogicWire extends BlockLogic
 	
 	private void setBlockState(World world, BlockPos pos, IBlockState state)
 	{
-//		TileEntity tile = world.getTileEntity(pos);
 		world.setBlockState(pos, state);
-//		world.setTileEntity(pos, tile);
 	}
 
 	@Override

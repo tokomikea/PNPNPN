@@ -14,8 +14,6 @@ public interface ILogicable
 	
 	boolean calculateLogic(Wire wire);
 	
-//	boolean calculateLogic(Wire wire, Set<BlockPos> mem);
-	
 	Wire getWireType();
 	
 	void setValue(Wire wire, boolean v, Set mem);

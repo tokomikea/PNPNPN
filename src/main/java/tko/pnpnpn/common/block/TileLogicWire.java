@@ -85,14 +85,6 @@ public class TileLogicWire extends TileEntity
 		return Logic.calculateLogic(this, wire, (new HashSet()));
 	}
 	
-//	@Override
-//	public boolean calculateLogic(Wire wire, Set mem)
-//	{
-//		if(wire == Wire.M){
-//			wire = this.wire;
-//		}
-//		return Logic.calculateLogic(this, wire, mem);
-//	}
 	
 	
 	

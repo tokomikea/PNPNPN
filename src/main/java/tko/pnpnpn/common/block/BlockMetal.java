@@ -38,12 +38,10 @@ public class BlockMetal extends BlockLogic
 	
 	private void ToSetBlockState(World world, BlockPos pos, boolean value)
 	{
-//		TileEntity tile = world.getTileEntity(pos);
 		IBlockState state = world.getBlockState(pos);
 		if(value != state.getValue(POWER))
 		{
 			world.setBlockState(pos, state.withProperty(POWER, value));
-//			world.setTileEntity(pos, tile);
 		}
 	}
 	
