@@ -12,6 +12,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 
 public final class TileLogicD extends TileEntity
 	implements ILogicable
@@ -105,6 +106,16 @@ public final class TileLogicD extends TileEntity
 				this.inside.setValue(wire, v, mem);
 			}
 		}
+	}
+	
+	@Override
+	public IBlockAccess getBlockAccess(){
+		return this.worldObj;
+	}
+	
+	@Override
+	public BlockPos getBlockPos(){
+		return this.pos;
 	}
 	
 

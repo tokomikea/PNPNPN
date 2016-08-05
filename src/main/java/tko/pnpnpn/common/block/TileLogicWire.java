@@ -14,6 +14,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import tko.pnpnpn.ModBlocks;
 import tko.pnpnpn.PNPNPN;
@@ -85,6 +86,15 @@ public class TileLogicWire extends TileEntity
 		return Logic.calculateLogic(this, wire, (new HashSet()));
 	}
 	
+	@Override
+	public IBlockAccess getBlockAccess(){
+		return this.worldObj;
+	}
+	
+	@Override
+	public BlockPos getBlockPos(){
+		return this.pos;
+	}
 	
 	
 	

@@ -4,6 +4,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public interface ILogicable
@@ -20,8 +21,8 @@ public interface ILogicable
 	
 	boolean getValue(Wire wire);
 	
-	World getWorld();
+	IBlockAccess getBlockAccess();
 	
-	BlockPos getPos();
+	BlockPos getBlockPos();
 	
 }

@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import tko.pnpnpn.PNPNPN;
 import tko.pnpnpn.common.S;
@@ -21,7 +22,7 @@ public class Logic
 		.forEach(tile -> list.add((TileLogicD) tile));
 		return list;
 	}
-	public static List<ILogicProvider> getLogicProviers(World world, BlockPos pos, Set mem){
+	public static List<ILogicProvider> getLogicProviers(IBlockAccess world, BlockPos pos, Set mem){
 		List<ILogicProvider> list = Lists.newLinkedList();
 		S.getSurroundPos(pos).stream()
 		.filter(p -> (! mem.contains(p)))
@@ -32,7 +33,7 @@ public class Logic
 		return list;
 	}
 	
-	public static List<ILogicable> getLogicables(World world, BlockPos pos, Set mem){
+	public static List<ILogicable> getLogicables(IBlockAccess world, BlockPos pos, Set mem){
 		List<ILogicable> list = Lists.newLinkedList();
 		S.getSurroundPos(pos).stream()
 		.filter(p -> (! mem.contains(p)))
@@ -46,9 +47,9 @@ public class Logic
 	public static boolean calculateLogic(ILogicable o, Wire wire, Set mem){
 		if (o.canPassLogic(wire)) {
 			wire = o.getWireType(); // !!
-			mem.add(o.getPos());
-			boolean b1 = Logic.getLogicByList(wire, Logic.getLogicProviers(o.getWorld(), o.getPos(), Sets.newHashSet(mem)));
-			return b1 || Logic.calculateSurroundLogic(wire, mem, Logic.getLogicables(o.getWorld(), o.getPos(), Sets.newHashSet(mem)));
+			mem.add(o.getBlockPos());
+			boolean b1 = Logic.getLogicByList(wire, Logic.getLogicProviers(o.getBlockAccess(), o.getBlockPos(), Sets.newHashSet(mem)));
+			return b1 || Logic.calculateSurroundLogic(wire, mem, Logic.getLogicables(o.getBlockAccess(), o.getBlockPos(), Sets.newHashSet(mem)));
 		} else {
 			return false;
 		}
