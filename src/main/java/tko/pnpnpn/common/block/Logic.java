@@ -14,22 +14,27 @@ import tko.pnpnpn.common.S;
 
 public class Logic
 {
-    public static List<TileLogicD> getLogicD(World world, BlockPos pos)
-    {
+    public static List<TileLogicD> getLogicD(World world, BlockPos pos){
         List<TileLogicD> list = Lists.newLinkedList();
-        S.getSurroundPos(pos).stream().map(world::getTileEntity).filter(o -> o instanceof TileLogicD).forEach(tile -> list.add((TileLogicD) tile));
+        S.getSurroundPos(pos).stream()
+        .map(world::getTileEntity)
+        .filter(o -> o instanceof TileLogicD)
+        .forEach(tile -> list.add((TileLogicD) tile));
         return list;
     }
 
-    public static List<ILogicProvider> getLogicProviers(IBlockAccess world, BlockPos pos, Set mem)
-    {
+    public static List<ILogicProvider> getLogicProviers(IBlockAccess world, BlockPos pos, Set mem){
         List<ILogicProvider> list = Lists.newLinkedList();
-        S.getSurroundPos(pos).stream().filter(p -> (!mem.contains(p))).peek(mem::add).map(world::getTileEntity).filter(ILogicProvider.instanceOf).forEach(tile -> list.add((ILogicProvider) tile));
+        S.getSurroundPos(pos).stream()
+        .filter(p -> (!mem.contains(p)))
+        .peek(mem::add)
+        .map(world::getTileEntity)
+        .filter(ILogicProvider.instanceOf)
+        .forEach(tile -> list.add((ILogicProvider) tile));
         return list;
     }
 
-    public static List<ILogicable> getLogicables(IBlockAccess world, BlockPos pos, Set mem)
-    {
+    public static List<ILogicable> getLogicables(IBlockAccess world, BlockPos pos, Set mem){
         List<ILogicable> list = Lists.newLinkedList();
         S.getSurroundPos(pos).stream()
         .filter(p -> (!mem.contains(p)))
@@ -40,8 +45,7 @@ public class Logic
         return list;
     }
 
-    public static boolean calculateLogic(ILogicable o, Wire wire, Set mem)
-    {
+    public static boolean calculateLogic(ILogicable o, Wire wire, Set mem){
         if(o.canPassLogic(wire)){
             wire = o.getWireType(); // !!
             mem.add(o.getBlockPos());
@@ -52,8 +56,7 @@ public class Logic
         }
     }
 
-    public static boolean getLogicByList(Wire wire, List<ILogicProvider> list)
-    {
+    public static boolean getLogicByList(Wire wire, List<ILogicProvider> list){
         if(list.isEmpty()){
             return false;
         }else{
@@ -63,8 +66,7 @@ public class Logic
         }
     }
 
-    public static boolean calculateSurroundLogic(Wire wire, Set mem, List<ILogicable> list)
-    {
+    public static boolean calculateSurroundLogic(Wire wire, Set mem, List<ILogicable> list){
         if(list.isEmpty()){
             return false;
         }else{
