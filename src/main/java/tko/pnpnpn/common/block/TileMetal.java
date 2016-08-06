@@ -16,47 +16,46 @@ import tko.pnpnpn.PNPNPN;
 import tko.pnpnpn.common.S;
 
 public class TileMetal extends TileLogicWire
-	implements ILogicable
+    implements ILogicable
 {
-	private boolean logic;
-	
-	public TileMetal()
-	{
-		super();
-	}
-	
-	public TileMetal(Wire wire, boolean l)
-	{
-		super(wire, l);
-	}
-	
-	
-	@Override public boolean canPassLogic(Wire wire){return true;}
+    private boolean logic;
 
-	@Override public Wire getWireType(){return Wire.M;}
+    public TileMetal()
+    {
+        super();
+    }
 
-	@Override
-	public boolean getValue(Wire wire)
-	{
-		return getLogic();
-	}
-	
-	private boolean getLogic()
-	{
-		return worldObj.getBlockState(pos).getValue(BlockLogic.POWER);
-	}
+    public TileMetal(Wire wire, boolean l)
+    {
+        super(wire, l);
+    }
 
-	@Override
-	public void setValue(Wire wire, boolean v, Set mem)
-	{
-		if (wire == Wire.M) {
-			IBlockState state = worldObj.getBlockState(pos);
-			worldObj.setBlockState(pos, state.withProperty(POWER, v));
-			
-			List<ILogicable> list = Logic.getLogicables(worldObj, pos, mem);
-			for(ILogicable tile : list) {
-				tile.setValue(Wire.M, v, mem);
-			}
-		}
-	}
+    @Override public boolean canPassLogic(Wire wire){return true;}
+
+    @Override public Wire getWireType(){return Wire.M;}
+
+    @Override
+    public boolean getValue(Wire wire)
+    {
+        return getLogic();
+    }
+
+    private boolean getLogic()
+    {
+        return worldObj.getBlockState(pos).getValue(BlockLogic.POWER);
+    }
+
+    @Override
+    public void setValue(Wire wire, boolean v, Set mem)
+    {
+        if(wire == Wire.M){
+            IBlockState state = worldObj.getBlockState(pos);
+            worldObj.setBlockState(pos, state.withProperty(POWER, v));
+
+            List<ILogicable> list = Logic.getLogicables(worldObj, pos, mem);
+            for(ILogicable tile : list){
+                tile.setValue(Wire.M, v, mem);
+            }
+        }
+    }
 }

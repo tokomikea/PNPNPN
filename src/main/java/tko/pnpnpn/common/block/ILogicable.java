@@ -9,20 +9,20 @@ import net.minecraft.world.World;
 
 public interface ILogicable
 {
-	public static final Predicate instanceOf = o -> o instanceof ILogicable;
-	
-	boolean canPassLogic(Wire wire);
-	
-	boolean calculateLogic(Wire wire);
-	
-	Wire getWireType();
-	
-	void setValue(Wire wire, boolean v, Set mem);
-	
-	boolean getValue(Wire wire);
-	
-	IBlockAccess getBlockAccess();
-	
-	BlockPos getBlockPos();
-	
+    public static final Predicate instanceOf = o -> o instanceof ILogicable;
+
+    boolean canPassLogic(Wire wire);
+
+    boolean calculateLogic(Wire wire);
+
+    Wire getWireType();
+
+    void setValue(Wire wire, boolean v, Set mem);
+
+    boolean getValue(Wire wire);
+
+    IBlockAccess getBlockAccess();
+
+    BlockPos getBlockPos();
+
 }

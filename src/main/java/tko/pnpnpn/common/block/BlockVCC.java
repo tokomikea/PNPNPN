@@ -11,30 +11,29 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class BlockVCC extends Block
-	implements ITileEntityProvider
+    implements ITileEntityProvider
 {
 
-	public BlockVCC()
-	{
-		super(Material.IRON);
-	}
+    public BlockVCC()
+    {
+        super(Material.IRON);
+    }
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta)
-	{
-		return (new TileVCC());
-	}
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta)
+    {
+        return (new TileVCC());
+    }
 
-	
-	@Override
+    @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
     {
-		if (worldIn.isRemote) return;
-		
-		TileEntity tile = worldIn.getTileEntity(pos);
-		if(tile instanceof TileVCC)
-		{
-			((TileVCC) tile).setPowered(worldIn.isBlockIndirectlyGettingPowered(pos) > 0);
-		}
+        if(worldIn.isRemote)
+            return;
+
+        TileEntity tile = worldIn.getTileEntity(pos);
+        if(tile instanceof TileVCC){
+            ((TileVCC) tile).setPowered(worldIn.isBlockIndirectlyGettingPowered(pos) > 0);
+        }
     }
 }

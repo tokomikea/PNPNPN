@@ -12,77 +12,76 @@ import tko.pnpnpn.dywe.DYWE;
 
 public class VCC extends DYWE
 {
+    public static final String Id = "vcc";
+    public static Block vcc;
 
-	public static final String Id = "vcc";
-	public static Block vcc;
+    @Override
+    public void registerInGame()
+    {
+        vcc = (new BlockVCC())
+                .setCreativeTab(PNPNPN.pnpnpnTab)
+                .setUnlocalizedName(Id)
+                .setRegistryName(Id);
+        GameRegistry.register(VCC.vcc);
+        GameRegistry.register(S.getUnRegisterItemBlock(VCC.vcc));
+    }
 
-	@Override
-	public void registerInGame()
-	{
-		vcc = (new BlockVCC())
-				.setCreativeTab(PNPNPN.pnpnpnTab)
-				.setUnlocalizedName(Id)
-				.setRegistryName(Id);
-		GameRegistry.register(VCC.vcc);
-		GameRegistry.register(S.getUnRegisterItemBlock(VCC.vcc));
-	}
+    @Override
+    public void onInit()
+    {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void onInit()
-	{
-		// TODO Auto-generated method stub
+    }
 
-	}
+    @Override
+    public void onPostInit()
+    {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void onPostInit()
-	{
-		// TODO Auto-generated method stub
+    }
 
-	}
+    @Override
+    public void setupRecipes()
+    {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void setupRecipes()
-	{
-		// TODO Auto-generated method stub
+    }
 
-	}
+    @Override
+    public void setupConfiguration(Configuration config)
+    {
+        // TODO Auto-generated method stub
 
-	@Override
-	public void setupConfiguration(Configuration config)
-	{
-		// TODO Auto-generated method stub
+    }
 
-	}
+    @Override
+    public boolean usesEvents()
+    {
+        // TODO Auto-generated method stub
+        return false;
+    }
 
-	@Override
-	public boolean usesEvents()
-	{
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void renderBlock()
+    {
+        S.renderBlock(VCC.vcc);
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void renderBlock()
-	{
-		S.renderBlock(VCC.vcc);
-	}
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void onClientInit()
+    {
+        // TODO
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void onClientInit()
-	{
-		// TODO
-		
-	}
+    }
 
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void onClientPostInit()
-	{
-		// TODO Auto-generated method stub
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void onClientPostInit()
+    {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
 }

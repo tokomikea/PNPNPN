@@ -15,34 +15,34 @@ import tko.pnpnpn.dywe.block.YR;
 
 public class ClientProxy extends CommonProxy
 {
-	@Override
-	public void preInit(FMLPreInitializationEvent event)
-	{
-		super.preInit(event);
-		
-		for(DYWE f : DYWEManager.FEATURES) {
-			f.renderBlock();
-		}
-		
-	}
-	
-	@Override
-	public void init(FMLInitializationEvent event)
-	{
-		super.init(event);
-		
-		for(DYWE f : DYWEManager.FEATURES) {
-			f.onClientInit();
-		}
-	}
-	
-	@Override
-	public void postInit(FMLPostInitializationEvent event)
-	{
-		super.postInit(event);
-		
-		for(DYWE f : DYWEManager.FEATURES) {
-			f.onClientPostInit();
-		}
-	}
+    @Override
+    public void preInit(FMLPreInitializationEvent event)
+    {
+        super.preInit(event);
+
+        for (DYWE f : DYWEManager.FEATURES){
+            f.renderBlock();
+        }
+
+    }
+
+    @Override
+    public void init(FMLInitializationEvent event)
+    {
+        super.init(event);
+
+        for (DYWE f : DYWEManager.FEATURES){
+            f.onClientInit();
+        }
+    }
+
+    @Override
+    public void postInit(FMLPostInitializationEvent event)
+    {
+        super.postInit(event);
+
+        for (DYWE f : DYWEManager.FEATURES){
+            f.onClientPostInit();
+        }
+    }
 }

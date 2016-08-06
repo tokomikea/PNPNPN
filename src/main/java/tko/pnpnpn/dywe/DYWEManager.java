@@ -11,15 +11,16 @@ import net.minecraftforge.common.MinecraftForge;
 public class DYWEManager
 {
 //	public static final Map<String, DYWE> FEATURES = Maps.newHashMap();
-	public static final List<DYWE> FEATURES = Lists.newArrayList();
-	
-	public static DYWE register(DYWE feature, String Id) {
-		FEATURES.add(feature);
-		
-		if (feature.usesEvents()) {
-			MinecraftForge.EVENT_BUS.register(feature);
-		}
-		
-		return feature;
-	}
+    public static final List<DYWE> FEATURES = Lists.newArrayList();
+
+    public static DYWE register(DYWE feature, String Id)
+    {
+        FEATURES.add(feature);
+
+        if(feature.usesEvents()){
+            MinecraftForge.EVENT_BUS.register(feature);
+        }
+
+        return feature;
+    }
 }

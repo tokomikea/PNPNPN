@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 public interface ILogicProvider
 {
-	public static final Predicate instanceOf = o -> o instanceof ILogicProvider; 
-	boolean getLogic(Wire wire);
-	
+    public static final Predicate instanceOf = o -> o instanceof ILogicProvider;
+
+    boolean getLogic(Wire wire);
 
 }

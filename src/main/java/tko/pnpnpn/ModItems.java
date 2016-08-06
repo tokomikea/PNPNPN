@@ -4,8 +4,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class ModItems
 {
-	public static void register()
-	{
-		;
-	}
+    public static void register()
+    {
+        ;
+    }
 }

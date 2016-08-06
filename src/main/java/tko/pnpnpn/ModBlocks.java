@@ -16,18 +16,18 @@ import tko.pnpnpn.dywe.block.YR;
 
 public class ModBlocks
 {
-	public static void register()
-	{
-		DYWEManager.register((new R()), R.Id);
-		DYWEManager.register((new Y()), Y.Id);
-		DYWEManager.register((new RY()), RY.Id);
-		DYWEManager.register((new YR()), YR.Id);
-		DYWEManager.register((new VCC()), VCC.Id);
-		DYWEManager.register((new M()), M.Id);
-		
-		GameRegistry.registerTileEntity(TileLogicWire.class, "tile-logic-wire");
-		GameRegistry.registerTileEntity(TileVCC.class, "tile-vcc");
-		GameRegistry.registerTileEntity(TileLogicD.class, "tile-d");
-		GameRegistry.registerTileEntity(TileMetal.class, "tile-m");
-	}
+    public static void register()
+    {
+        DYWEManager.register((new R()), R.Id);
+        DYWEManager.register((new Y()), Y.Id);
+        DYWEManager.register((new RY()), RY.Id);
+        DYWEManager.register((new YR()), YR.Id);
+        DYWEManager.register((new VCC()), VCC.Id);
+        DYWEManager.register((new M()), M.Id);
+
+        GameRegistry.registerTileEntity(TileLogicWire.class, "tile-logic-wire");
+        GameRegistry.registerTileEntity(TileVCC.class, "tile-vcc");
+        GameRegistry.registerTileEntity(TileLogicD.class, "tile-d");
+        GameRegistry.registerTileEntity(TileMetal.class, "tile-m");
+    }
 }

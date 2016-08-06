@@ -21,106 +21,101 @@ import tko.pnpnpn.PNPNPN;
 import tko.pnpnpn.common.S;
 
 public class TileLogicWire extends TileEntity
-	implements ILogicable
+    implements ILogicable
 {
-	
-	private Wire wire;
-	private boolean logic;
-	
-	public TileLogicWire()
-	{
-		super();
-	}
-	
-	public TileLogicWire(Wire wire, boolean logic)
-	{
-		super();
-		this.wire = wire;
-		this.logic = logic;
-	}
-	
-	
-	
-	
-	@Override
-	public boolean canPassLogic(Wire source)
-	{
-		return this.wire == source
-					|| source == Wire.M;
-	}
 
-	@Override
-	public Wire getWireType()
-	{
-		return this.wire;
-	}
-	
-	@Override
-	public void setValue(Wire wire, boolean v, Set mem)
-	{
-		if (wire == this.wire) {
-			if(v!=logic){
-				mem.add(pos);
-				IBlockState state = worldObj.getBlockState(pos);
-				worldObj.setBlockState(pos, state.withProperty(POWER, v));
-				List<ILogicable> list = Logic.getLogicables(worldObj, pos, mem);
-				for(ILogicable tile : list) {
-					tile.setValue(wire, v, mem);
-				}
-			}
-		}
-	}
-	
-	@Override
-	public boolean getValue(Wire wire)
-	{
-		if (canPassLogic(wire)) { 
-			return logic;
-		}
-		return false;
-	}
-	
-	@Override
-	public boolean calculateLogic(Wire wire)
-	{
-		return Logic.calculateLogic(this, wire, (new HashSet()));
-	}
-	
-	@Override
-	public IBlockAccess getBlockAccess(){
-		return this.worldObj;
-	}
-	
-	@Override
-	public BlockPos getBlockPos(){
-		return this.pos;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@Override
-	public void readFromNBT(NBTTagCompound compound)
-	{
-		super.readFromNBT(compound);
-		this.wire = Wire.i2t(compound.getByte("logic_type"));
-		this.logic = compound.getBoolean("logic_value");
-	}
+    private Wire wire;
+    private boolean logic;
 
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound)
-	{
-		compound.setByte("logic_type", (byte) Wire.t2i(this.wire));
-		compound.setBoolean("logic_value", this.logic);
-		return super.writeToNBT(compound);
-	}
+    public TileLogicWire()
+    {
+        super();
+    }
 
+    public TileLogicWire(Wire wire, boolean logic)
+    {
+        super();
+        this.wire = wire;
+        this.logic = logic;
+    }
+
+    @Override
+    public boolean canPassLogic(Wire source)
+    {
+        return this.wire == source
+                || source == Wire.M;
+    }
+
+    @Override
+    public Wire getWireType(){return this.wire;}
+
+    @Override
+    public void setValue(Wire wire, boolean v, Set mem)
+    {
+        if(wire == this.wire){
+            if(v != logic){
+                mem.add(pos);
+                IBlockState state = worldObj.getBlockState(pos);
+                worldObj.setBlockState(pos, state.withProperty(POWER, v));
+                List<ILogicable> list = Logic.getLogicables(worldObj, pos, mem);
+                for(ILogicable tile : list){
+                    tile.setValue(wire, v, mem);
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean getValue(Wire wire)
+    {
+        if(canPassLogic(wire)){
+            return logic;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean calculateLogic(Wire wire)
+    {
+        return Logic.calculateLogic(this, wire, (new HashSet()));
+    }
+
+    @Override
+    public IBlockAccess getBlockAccess()
+    {
+        return this.worldObj;
+    }
+
+    @Override
+    public BlockPos getBlockPos()
+    {
+        return this.pos;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound)
+    {
+        super.readFromNBT(compound);
+        this.wire = Wire.i2t(compound.getByte("logic_type"));
+        this.logic = compound.getBoolean("logic_value");
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound)
+    {
+        compound.setByte("logic_type", (byte) Wire.t2i(this.wire));
+        compound.setBoolean("logic_value", this.logic);
+        return super.writeToNBT(compound);
+    }
 }
