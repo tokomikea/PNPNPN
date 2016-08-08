@@ -17,6 +17,7 @@ public interface ILogicable
 
     Wire getWireType();
 
+    @Deprecated
     void setValue(Wire wire, boolean v, Set mem);
 
     boolean getValue(Wire wire);
