@@ -80,15 +80,13 @@ public class BlockLogicD extends BlockLogic
             boolean b2 = ((ILogicable) tile).calculateLogic(inWire);
 
             if (shouldUpdate(o, b1)){
-                world.setBlockState(pos, state.withProperty(OUTSIDE, b1), -2);
-                world.updateBlockTick(pos, this, DELAY, -1);
+                world.setBlockState(pos, state.withProperty(OUTSIDE, b1), 2);
+                world.updateBlockTick(pos, this, DELAY, -2);
             }
-            if (inWire == Wire.P && !o && b2
-                    || inWire == Wire.N && o && b2){
-                toSetBlockState(world, pos, INSIDE, true);
-            }else{
-                toSetBlockState(world, pos, INSIDE, false);
-            }
+            
+            boolean b3 = (inWire == Wire.P && !o && b2)
+                            || (inWire == Wire.N && o && b2);
+            toSetBlockState(world, pos, INSIDE, b3);
         }
     }
 
