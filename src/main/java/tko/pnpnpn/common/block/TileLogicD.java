@@ -74,7 +74,7 @@ public final class TileLogicD extends TileEntity
     public boolean calculateLogic(Wire wire)
     {
         if(wire == this.outside.getWireType()){
-            return this.outside.calculateLogic(wire);
+            return Logic.calculateLogicWithoutCheck(outside, wire, Sets.newHashSet());
         }else if(wire == this.inside.getWireType()){
             return this.inside.calculateLogic(wire);
         }

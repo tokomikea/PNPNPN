@@ -23,6 +23,11 @@ public class Logic
         return list;
     }
 
+    
+    
+    
+    
+    
     public static List<ILogicProvider> getLogicProviers(IBlockAccess world, BlockPos pos, Set mem){
         List<ILogicProvider> list = Lists.newLinkedList();
         S.getSurroundPos(pos).stream()
@@ -34,6 +39,11 @@ public class Logic
         return list;
     }
 
+    
+    
+    
+    
+    
     public static List<ILogicable> getLogicables(IBlockAccess world, BlockPos pos, Set mem){
         List<ILogicable> list = Lists.newLinkedList();
         S.getSurroundPos(pos).stream()
@@ -44,18 +54,34 @@ public class Logic
         .forEach(tile -> list.add((ILogicable) tile));
         return list;
     }
-
+    
+    
+    
+    
+    
     public static boolean calculateLogic(ILogicable o, Wire wire, Set mem){
         if(o.canPassLogic(wire)){
             wire = o.getWireType(); // !!
             mem.add(o.getBlockPos());
-            boolean b1 = Logic.getLogicByList(wire, Logic.getLogicProviers(o.getBlockAccess(), o.getBlockPos(), Sets.newHashSet(mem)));
-            return b1 || Logic.calculateSurroundLogic(wire, mem, Logic.getLogicables(o.getBlockAccess(), o.getBlockPos(), Sets.newHashSet(mem)));
+            return calculateLogicWithoutCheck(o, wire, mem);
         }else{
             return false;
         }
     }
-
+    
+    
+    
+    
+    
+    public static boolean calculateLogicWithoutCheck(ILogicable o, Wire wire, Set mem){
+        boolean b1 = Logic.getLogicByList(wire, Logic.getLogicProviers(o.getBlockAccess(), o.getBlockPos(), Sets.newHashSet(mem)));
+        return b1 || Logic.calculateSurroundLogic(wire, mem, Logic.getLogicables(o.getBlockAccess(), o.getBlockPos(), Sets.newHashSet(mem)));
+    }
+    
+    
+    
+    
+    
     public static boolean getLogicByList(Wire wire, List<ILogicProvider> list){
         if(list.isEmpty()){
             return false;
@@ -65,7 +91,12 @@ public class Logic
             return b || getLogicByList(wire, list);
         }
     }
+    
 
+    
+    
+    
+    
     public static boolean calculateSurroundLogic(Wire wire, Set mem, List<ILogicable> list){
         if(list.isEmpty()){
             return false;
