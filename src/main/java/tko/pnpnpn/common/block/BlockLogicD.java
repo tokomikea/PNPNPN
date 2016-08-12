@@ -3,6 +3,7 @@ package tko.pnpnpn.common.block;
 import static tko.pnpnpn.common.block.BlockLogicD.OUTSIDE;
 
 import java.util.Random;
+import java.util.function.Predicate;
 
 import javax.annotation.Nullable;
 
@@ -61,6 +62,10 @@ public class BlockLogicD extends BlockLogic
         }
     }
 
+    
+    
+    
+    
     private boolean isInsideEN(World world, BlockPos pos, Wire in)
     {
         if (in == Wire.P){
@@ -70,6 +75,10 @@ public class BlockLogicD extends BlockLogic
         }
     }
 
+    
+    
+    
+    
     @Override
     public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
     {
@@ -90,6 +99,10 @@ public class BlockLogicD extends BlockLogic
         }
     }
 
+    
+    
+    
+    
     private void toSetBlockState(World world, BlockPos pos, IProperty p, boolean value)
     {
         if (shouldUpdate(world, pos, p, value)){
@@ -97,6 +110,10 @@ public class BlockLogicD extends BlockLogic
         }
     }
 
+    
+    
+    
+    
     private boolean shouldUpdate(World world, BlockPos pos, IProperty<Boolean> p, boolean value)
     {
         IBlockState state = world.getBlockState(pos);
@@ -114,61 +131,109 @@ public class BlockLogicD extends BlockLogic
         return now != last;
     }
 
+    
+    
+    
+    
     private void toggleLogic(World world, BlockPos pos, IProperty<Boolean> p)
     {
         IBlockState state = world.getBlockState(pos);
         setBlockState(world, pos, p, state.cycleProperty(p).getValue(p));
     }
 
+    
+    
+    
+    
     private void setBlockState(World world, BlockPos pos, IProperty<Boolean> p, boolean value)
     {
         IBlockState state = world.getBlockState(pos);
         world.setBlockState(pos, state.withProperty(p, Boolean.valueOf(value)));
     }
 
+    
+    
+    
+    
     @Override
     public boolean onBlockActivated(World world, BlockPos pos,
             IBlockState state, EntityPlayer player, EnumHand hand,
             @Nullable ItemStack heldItem, EnumFacing side,
             float hitX, float hitY, float hitZ)
     {
-        if (world.isRemote && player.isSneaking()){
-            return true;
-        }
-
-        if ((!world.isRemote) && player.isSneaking()){
-            takeOff(world, pos, state.getValue(INSIDE));
-
-            if (!player.isCreative()){
-                spawnOutside(world, pos.offset(side));
+        if(player.isSneaking()){
+            if(!world.isRemote){
+                takeOff(world, pos, ((ILogicable)world.getTileEntity(pos)).calculateLogic(inWire));
+                if(!player.isCreative())spawnOutside(world, pos.offset(side));
             }
             return true;
-        }
-        return false;
+        }else
+            return false;
     }
-
+    
+    
+    
+    
+    
     private void takeOff(World world, BlockPos pos, boolean value)
     {
-        IBlockState r = R.redLogicWire.getDefaultState();
-        IBlockState y = Y.yellowLogicWire.getDefaultState();
-        if (inWire == Wire.N){
-            world.setBlockState(pos, r.withProperty(POWER, value));
-        }else{
-            world.setBlockState(pos, y.withProperty(POWER, value));
-        }
+        IBlockState s1 = getInsideState(value);
+        world.setBlockState(pos, s1);
     }
 
+    
+    
+    
+    
     private void spawnOutside(World world, BlockPos where)
     {
-        IBlockState r = R.redLogicWire.getDefaultState();
-        IBlockState y = Y.yellowLogicWire.getDefaultState();
-        if (outWire == Wire.N){
-            spawnItemStack(world, where, r);
-        }else{
-            spawnItemStack(world, where, y);
-        }
+        IBlockState b1 = getOutsideBlock().getDefaultState();
+        spawnItemStack(world, where, b1);
     }
 
+    
+    
+    
+    
+    private IBlockState getInsideState(boolean value)
+    {
+        return getInsideBlock().getDefaultState().withProperty(POWER, value);
+    }
+    
+    
+    
+    
+    
+    private Block getOutsideBlock()
+    {
+        Predicate p1 = (o -> o == outWire);
+        return f1(p1);
+    }
+    
+    
+    
+    
+    
+    private Block getInsideBlock()
+    {
+        Predicate p1 = (o -> o == inWire);
+        return f1(p1);
+    }
+    
+    
+    
+    
+    
+    private Block f1(Predicate p)
+    {
+        if(p.test(Wire.N))return R.redLogicWire;
+        else return Y.yellowLogicWire;
+    }
+
+    
+    
+    
+    
     private void spawnItemStack(World world, BlockPos offset, IBlockState state)
     {
         ItemStack stack = createStackedBlock(state);
