@@ -67,7 +67,7 @@ public class BlockLogicWire extends BlockLogic
         Object tile = worldIn.getTileEntity(pos);
         if(tile instanceof ILogicable){
             boolean bool = ((ILogicable) tile).calculateLogic(wire);
-            this.ToSetBlockState(worldIn, pos, bool);
+            this.setDistinctState(worldIn, pos, bool);
         }
     }
 
@@ -76,7 +76,7 @@ public class BlockLogicWire extends BlockLogic
     
     
     
-    private void ToSetBlockState(World world, BlockPos pos, boolean value)
+    private void setDistinctState(World world, BlockPos pos, boolean value)
     {
 
         boolean b1 = shouldSetState(world, pos, value);
