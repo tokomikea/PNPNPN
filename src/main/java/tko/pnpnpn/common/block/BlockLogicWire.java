@@ -82,9 +82,6 @@ public class BlockLogicWire extends BlockLogic
         boolean b1 = shouldSetState(world, pos, value);
         if(b1){
             IBlockState state = getBlockState(world, pos, POWER, value);
-            for(TileEntity tile : Logic.getLogicD(world, pos)){
-                world.notifyBlockOfStateChange(tile.getPos(), state.getBlock());
-            }
             setBlockState(world, pos, state);
         }
     }
