@@ -275,8 +275,8 @@ public class BlockLogicD extends BlockLogic
     public IBlockState getStateFromMeta(int meta)
     {
         return this.getDefaultState()
-                    .withProperty(INSIDE, Boolean.valueOf((meta & 1) == 1))
-                    .withProperty(OUTSIDE, Boolean.valueOf((meta & 2) == 1));
+                    .withProperty(INSIDE, Boolean.valueOf((meta & 1) > 0))
+                    .withProperty(OUTSIDE, Boolean.valueOf((meta & 2) > 0));
     }
     
     @Override
