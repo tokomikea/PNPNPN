@@ -20,7 +20,7 @@ import tko.pnpnpn.common.CommonProxy;
         name = PNPNPN.MODID,
         version = PNPNPN.VERSION,
         acceptedMinecraftVersions = "1.10.2",
-        dependencies = "required-after:Forge@[12.18.0.2046,);")
+        dependencies = "required-after:Forge@[12.18.1.2046,);")
 public class PNPNPN
 {
     public static final String MODID = "pnpnpn";
